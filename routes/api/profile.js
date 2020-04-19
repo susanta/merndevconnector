@@ -9,9 +9,9 @@ const { check, validationResult } = require('express-validator');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
-// @route   GET api/profile/me
-// @desc    Get current users profile
-// access   Private
+// @route    GET api/profile/me
+// @desc     Get current users profile
+// @access   Private
 router.get('/me', auth, async (req, res) => {
   try {
     // Get the profile along with the other user stuff using populate method which are not in profile model
@@ -30,9 +30,9 @@ router.get('/me', auth, async (req, res) => {
   }
 });
 
-// @route   POST api/profile
-// @desc    Create or update user profile
-// access   Private
+// @route    POST api/profile
+// @desc     Create or update user profile
+// @access   Private
 router.post(
   '/',
   [
@@ -110,9 +110,9 @@ router.post(
   }
 );
 
-// @route   POST api/profile
-// @desc    Get all profiles
-// access   Public
+// @route    POST api/profile
+// @desc     Get all profiles
+// @access   Public
 router.get('/', async (req, res) => {
   try {
     const profiles = await Profile.find().populate('user', ['name', 'avatar']);
@@ -123,9 +123,9 @@ router.get('/', async (req, res) => {
   }
 });
 
-// @route   POST api/profile/user/:user_id
-// @desc    Get profile by user ID
-// access   Public
+// @route    POST api/profile/user/:user_id
+// @desc     Get profile by user ID
+// @access   Public
 router.get('/user/:user_id', async (req, res) => {
   try {
     const profile = await Profile.findOne({
@@ -146,9 +146,9 @@ router.get('/user/:user_id', async (req, res) => {
   }
 });
 
-// @route   DELETE api/profile
-// @desc    Delete profile, user & post
-// access   Private
+// @route    DELETE api/profile
+// @desc     Delete profile, user & post
+// @access   Private
 router.delete('/', auth, async (req, res) => {
   try {
     // @todo - remove users posts
